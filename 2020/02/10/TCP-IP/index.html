@@ -30,7 +30,7 @@
 <meta property="og:image" content="http://yoursite.com/2020/02/10/TCP-IP/tcpip%E5%9B%9B%E5%B1%82%E6%A8%A1%E5%9E%8B.png">
 <meta property="og:image" content="http://yoursite.com/2020/02/10/TCP-IP/tcp%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B.png">
 <meta property="article:published_time" content="2020-02-09T22:11:30.000Z">
-<meta property="article:modified_time" content="2020-02-10T02:51:48.019Z">
+<meta property="article:modified_time" content="2020-02-10T10:10:50.404Z">
 <meta property="article:author" content="GJH">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://yoursite.com/2020/02/10/TCP-IP/tcpip%E5%9B%9B%E5%B1%82%E6%A8%A1%E5%9E%8B.png">
@@ -170,7 +170,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-02-10 06:11:30 / 修改时间：10:51:48" itemprop="dateCreated datePublished" datetime="2020-02-10T06:11:30+08:00">2020-02-10</time>
+              <time title="创建时间：2020-02-10 06:11:30 / 修改时间：18:10:50" itemprop="dateCreated datePublished" datetime="2020-02-10T06:11:30+08:00">2020-02-10</time>
             </span>
 
           
@@ -236,22 +236,22 @@
 <h2 id="IP地址作用，以及MAC地址作用"><a href="#IP地址作用，以及MAC地址作用" class="headerlink" title="IP地址作用，以及MAC地址作用"></a>IP地址作用，以及MAC地址作用</h2><p>MAC地址是一个硬件地址，用来定义网络设备的位置，主要由数据链路层负责。而IP地址是IP协议提供的一种统一的地址格式，为互联网上的每一个网络和每一台主机分配一个逻辑地址，以此来屏蔽物理地址的差异。</p>
 <h2 id="TCP-IP数据链路层的交互过程"><a href="#TCP-IP数据链路层的交互过程" class="headerlink" title="TCP/IP数据链路层的交互过程"></a>TCP/IP数据链路层的交互过程</h2><p>网络层等到数据链层用mac地址作为通信目标，数据包到达网络等准备往数据链层发送的时候，首先会去自己的arp缓存表(存着ip-mac对应关系)去查找改目标ip的mac地址，如果查到了，就讲目标ip的mac地址封装到链路层数据包的包头。如果缓存中没有找到，会发起一个广播：who is ip XXX tell ip XXX,所有收到的广播的机器看这个ip是不是自己的，如果是自己的，则以单拨的形式将自己的mac地址回复给请求的机器</p>
 <h2 id="TCP和UDP的区别和各自适用的场景"><a href="#TCP和UDP的区别和各自适用的场景" class="headerlink" title="TCP和UDP的区别和各自适用的场景"></a>TCP和UDP的区别和各自适用的场景</h2><h3 id="TCP和UDP区别"><a href="#TCP和UDP区别" class="headerlink" title="TCP和UDP区别"></a>TCP和UDP区别</h3><ol>
-<li><p>连接<br>TCP是面向连接的传输层协议，即传输数据之前必须先建立好连接。&lt;br  &gt;<br>UDP无连接。</p>
+<li><p>连接<br>TCP是面向连接的传输层协议，即传输数据之前必须先建立好连接。<br>UDP无连接。</p>
 </li>
 <li><p>服务对象</p>
-<p>TCP是点对点的两点间服务，即一条TCP连接只能有两个端点；&lt;br  &gt;<br>UDP支持一对一，一对多，多对一，多对多的交互通信。</p>
+<p>TCP是点对点的两点间服务，即一条TCP连接只能有两个端点；<br>UDP支持一对一，一对多，多对一，多对多的交互通信。</p>
 </li>
 <li><p>可靠性</p>
-<p>TCP是可靠交付：无差错，不丢失，不重复，按序到达。&lt;br  &gt;<br>UDP是尽最大努力交付，不保证可靠交付。</p>
+<p>TCP是可靠交付：无差错，不丢失，不重复，按序到达。<br>UDP是尽最大努力交付，不保证可靠交付。</p>
 </li>
 <li><p>拥塞控制，流量控制</p>
-<p>TCP有拥塞控制和流量控制保证数据传输的安全性。&lt;br  &gt;<br>UDP没有拥塞控制，网络拥塞不会影响源主机的发送效率。</p>
+<p>TCP有拥塞控制和流量控制保证数据传输的安全性。<br>UDP没有拥塞控制，网络拥塞不会影响源主机的发送效率。</p>
 </li>
 <li><p>报文长度</p>
-<p>TCP是动态报文长度，即TCP报文长度是根据接收方的窗口大小和当前网络拥塞情况决定的。&lt;br  &gt;<br>UDP面向报文，不合并，不拆分，保留上面传下来报文的边界。</p>
+<p>TCP是动态报文长度，即TCP报文长度是根据接收方的窗口大小和当前网络拥塞情况决定的。<br>UDP面向报文，不合并，不拆分，保留上面传下来报文的边界。</p>
 </li>
 <li><p>首部开销</p>
-<p>TCP首部开销大，首部20个字节。&lt;br  &gt;<br>UDP首部开销小，8字节。（源端口，目的端口，数据长度，校验和）</p>
+<p>TCP首部开销大，首部20个字节。<br>UDP首部开销小，8字节。（源端口，目的端口，数据长度，校验和）</p>
 </li>
 </ol>
 <h3 id="TCP和UDP适用场景"><a href="#TCP和UDP适用场景" class="headerlink" title="TCP和UDP适用场景"></a>TCP和UDP适用场景</h3><p>TCP 是可靠的但传输速度慢，UDP 是不可靠的但传输速度快。因此在选用具体协议通信时，应该根据通信数据的要求而决定。</p>
@@ -351,7 +351,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

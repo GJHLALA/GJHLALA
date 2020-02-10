@@ -139,6 +139,172 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/10/TCP-IP%E8%A1%A5%E5%85%85/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="GJH">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GJH's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/10/TCP-IP%E8%A1%A5%E5%85%85/" class="post-title-link" itemprop="url">TCP/IP补充</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-02-10 17:40:46 / 修改时间：18:08:03" itemprop="dateCreated datePublished" datetime="2020-02-10T17:40:46+08:00">2020-02-10</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Nagle"><a href="#Nagle" class="headerlink" title="Nagle"></a>Nagle</h2><p> TCP连接上最多能有一个未被确认的小分组，在该分组的确认到达之前不能发送其他的小分组；相仿，TCP收集这些少量的分组，并在确认到达来时以一个分组的方式发出去</p>
+<h2 id="TCP怎么判断是超时还是丢失"><a href="#TCP怎么判断是超时还是丢失" class="headerlink" title="TCP怎么判断是超时还是丢失"></a>TCP怎么判断是超时还是丢失</h2><ul>
+<li>在一定时期内未收到报文确认，报文重发</li>
+<li>接收端检测到报文丢失，重复发送ack报文，发送端收到三个以上重复报文，快重传</li>
+</ul>
+<h2 id="cwnd单位"><a href="#cwnd单位" class="headerlink" title="cwnd单位"></a>cwnd单位</h2><ul>
+<li>cwnd初始值为1 -&gt; 1个报文段</li>
+<li>ssthresh 65535字节</li>
+</ul>
+<h2 id="校验和"><a href="#校验和" class="headerlink" title="校验和"></a>校验和</h2><ul>
+<li>UDP校验和包含首部和数据，是可选项</li>
+<li>TCP校验和：TCP首部+TCP数据+TCP伪首部，是必需的</li>
+</ul>
+<h2 id="TCP同时打开和同时关闭"><a href="#TCP同时打开和同时关闭" class="headerlink" title="TCP同时打开和同时关闭"></a>TCP同时打开和同时关闭</h2><h3 id="同时打开"><a href="#同时打开" class="headerlink" title="同时打开"></a>同时打开</h3> <img src="/2020/02/10/TCP-IP%E8%A1%A5%E5%85%85/TCP%E5%90%8C%E6%97%B6%E6%89%93%E5%BC%80.png" class="">
+
+<p> 需要交换四个报文段，比三次握手多一个。<br>任何一端既是客户端又是服务器端</p>
+<h3 id="同时关闭"><a href="#同时关闭" class="headerlink" title="同时关闭"></a>同时关闭</h3> <img src="/2020/02/10/TCP-IP%E8%A1%A5%E5%85%85/TCP%E5%90%8C%E6%97%B6%E5%85%B3%E9%97%AD.png" class="">
+
+<p> 同时关闭与正常关闭使用的段交换数目相同</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/10/c-%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E5%92%8C%E7%BB%A7%E6%89%BF%E7%B1%BB%E5%9E%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="GJH">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GJH's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/10/c-%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E5%92%8C%E7%BB%A7%E6%89%BF%E7%B1%BB%E5%9E%8B/" class="post-title-link" itemprop="url">c++访问控制和继承类型</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-02-10 17:27:51 / 修改时间：17:37:38" itemprop="dateCreated datePublished" datetime="2020-02-10T17:27:51+08:00">2020-02-10</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="访问控制"><a href="#访问控制" class="headerlink" title="访问控制"></a>访问控制</h2><table>
+<thead>
+<tr>
+<th>访问</th>
+<th>public</th>
+<th>protected</th>
+<th>private</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>同一个类</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>派生类</td>
+<td>yes</td>
+<td>yes</td>
+<td>no</td>
+</tr>
+<tr>
+<td>外部的类</td>
+<td>yes</td>
+<td>no</td>
+<td>no</td>
+</tr>
+</tbody></table>
+<h2 id="继承类型"><a href="#继承类型" class="headerlink" title="继承类型"></a>继承类型</h2><h3 id="public"><a href="#public" class="headerlink" title="public"></a>public</h3><p> 基类的公有成员也是派生类的公有成员&lt;br  &gt;<br>保护成员也是派生类的保护成员&lt;br  &gt;<br>私有成员不能直接被派生类访问，当可通过调用基类的公有和保护成员访问</p>
+<h3 id="protect"><a href="#protect" class="headerlink" title="protect"></a>protect</h3><p> 基类的公有和保护成员将继承为派生类的保护成员</p>
+<h3 id="private"><a href="#private" class="headerlink" title="private"></a>private</h3><p> 基类的公有和保护成员将继承为派生类的私有成员</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/10/linux%E5%91%BD%E4%BB%A4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -250,7 +416,7 @@ netstat -an|grep 8080
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-02-10 10:56:16 / 修改时间：11:24:57" itemprop="dateCreated datePublished" datetime="2020-02-10T10:56:16+08:00">2020-02-10</time>
+              <time title="创建时间：2020-02-10 10:56:16 / 修改时间：18:38:27" itemprop="dateCreated datePublished" datetime="2020-02-10T10:56:16+08:00">2020-02-10</time>
             </span>
 
           
@@ -272,7 +438,7 @@ netstat -an|grep 8080
 <li>一个线程只能属于一个进程，而一个进程可以有多个线程，但至少有一个线程。线程依赖于进程而存在。</li>
 <li>进程在执行过程中拥有独立的内存单元，而多个线程共享进程的内存。（资源分配给进程，同一进程的所有线程共享该进程的所有资源。同一进程中的多个线程共享代码段（代码和常量），数据段（全局变量和静态变量），扩展段（堆存储）。但是每个线程拥有自己的栈段，栈段又叫运行时段，用来存放所有局部变量和临时变量。）</li>
 <li>进程是资源分配的最小单位，线程是CPU调度的最小单位；</li>
-<li>系统开销： 由于在创建或撤消进程时，系统都要为之分配或回收资源，如内存空间、I／o设备等。因此，操作系统所付出的开销将显著地大于在创建或撤消线程时的开销。类似地，在进行进程切换时，涉及到整个当前进程CPU环境的保存以及新被调度运行的进程的CPU环境的设置。而线程切换只须保存和设置少量寄存器的内容，并不涉及存储器管理方面的操作。可见，进程切换的开销也远大于线程切换的开销。</li>
+<li>系统开销： 由于在创建或撤消进程时，系统都要为之分配或回收资源。因此，操作系统所付出的开销将显著地大于在创建或撤消线程时的开销。类似地，在进行进程切换时，涉及到整个当前进程CPU环境的保存以及新被调度运行的进程的CPU环境的设置。而线程切换只须保存和设置少量寄存器的内容，并不涉及存储器管理方面的操作。可见，进程切换的开销也远大于线程切换的开销。(主要因为要切换页表)</li>
 <li>通信：由于同一进程中的多个线程具有相同的地址空间，致使它们之间的同步和通信的实现，也变得比较容易。进程间通信IPC，线程间可以直接读写进程数据段（如全局变量）来进行通信——需要进程同步和互斥手段的辅助，以保证数据的一致性。在有的系统中，线程的切换、同步和通信都无须操作系统内核的干预</li>
 <li>进程编程调试简单可靠性高，但是创建销毁开销大；线程正相反，开销小，切换速度快，但是编程调试相对复杂。</li>
 <li>进程间不会相互影响 ；线程一个线程挂掉将导致整个进程挂掉</li>
@@ -299,6 +465,24 @@ netstat -an|grep 8080
 <li><p>互斥量</p>
 <p>互斥量又称互斥锁，主要用于线程互斥，不能保证按序访问，可以和条件锁一起实现同步。当进入临界区时，需要获得互斥锁并且加锁；当离开临界区时，需要对互斥锁解锁，以唤醒其他等待该互斥锁的线程。</p>
 </li>
+</ul>
+<h2 id="进程拥有的资源"><a href="#进程拥有的资源" class="headerlink" title="进程拥有的资源"></a>进程拥有的资源</h2><ol>
+<li>虚拟地址空间</li>
+<li>PID(进程ID)</li>
+<li>一个或多个线程</li>
+<li>一个可执行映像，也就是该进程的程序文件在内存中的表示</li>
+<li>一个位于内核空间中的数据结构EPROCESS，用以记录该进程的关键信息，包括进程的创建时间，映像文件名称等</li>
+<li>一个位于内核的句柄</li>
+<li>一个位于描述内存目录的基地址</li>
+<li>一个位于用户空间中的进程环境块PEB</li>
+<li>一个访问权限令牌，用以表示该进程的用户，安全组，以及优先级别</li>
+</ol>
+<h2 id="进程和线程调度算法"><a href="#进程和线程调度算法" class="headerlink" title="进程和线程调度算法"></a>进程和线程调度算法</h2><ul>
+<li>先来先服务</li>
+<li>短作业优先</li>
+<li>最高优先权(抢占式，非抢占式),最高响应比优先</li>
+<li>时间片轮转法，多级反馈队列</li>
+<li>电梯调度</li>
 </ul>
 <h2 id="并发和并行"><a href="#并发和并行" class="headerlink" title="并发和并行"></a>并发和并行</h2><ul>
 <li><p>并发（concurrency）</p>
@@ -395,7 +579,7 @@ netstat -an|grep 8080
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-02-10 06:11:30 / 修改时间：10:51:48" itemprop="dateCreated datePublished" datetime="2020-02-10T06:11:30+08:00">2020-02-10</time>
+              <time title="创建时间：2020-02-10 06:11:30 / 修改时间：18:10:50" itemprop="dateCreated datePublished" datetime="2020-02-10T06:11:30+08:00">2020-02-10</time>
             </span>
 
           
@@ -461,22 +645,22 @@ netstat -an|grep 8080
 <h2 id="IP地址作用，以及MAC地址作用"><a href="#IP地址作用，以及MAC地址作用" class="headerlink" title="IP地址作用，以及MAC地址作用"></a>IP地址作用，以及MAC地址作用</h2><p>MAC地址是一个硬件地址，用来定义网络设备的位置，主要由数据链路层负责。而IP地址是IP协议提供的一种统一的地址格式，为互联网上的每一个网络和每一台主机分配一个逻辑地址，以此来屏蔽物理地址的差异。</p>
 <h2 id="TCP-IP数据链路层的交互过程"><a href="#TCP-IP数据链路层的交互过程" class="headerlink" title="TCP/IP数据链路层的交互过程"></a>TCP/IP数据链路层的交互过程</h2><p>网络层等到数据链层用mac地址作为通信目标，数据包到达网络等准备往数据链层发送的时候，首先会去自己的arp缓存表(存着ip-mac对应关系)去查找改目标ip的mac地址，如果查到了，就讲目标ip的mac地址封装到链路层数据包的包头。如果缓存中没有找到，会发起一个广播：who is ip XXX tell ip XXX,所有收到的广播的机器看这个ip是不是自己的，如果是自己的，则以单拨的形式将自己的mac地址回复给请求的机器</p>
 <h2 id="TCP和UDP的区别和各自适用的场景"><a href="#TCP和UDP的区别和各自适用的场景" class="headerlink" title="TCP和UDP的区别和各自适用的场景"></a>TCP和UDP的区别和各自适用的场景</h2><h3 id="TCP和UDP区别"><a href="#TCP和UDP区别" class="headerlink" title="TCP和UDP区别"></a>TCP和UDP区别</h3><ol>
-<li><p>连接<br>TCP是面向连接的传输层协议，即传输数据之前必须先建立好连接。&lt;br  &gt;<br>UDP无连接。</p>
+<li><p>连接<br>TCP是面向连接的传输层协议，即传输数据之前必须先建立好连接。<br>UDP无连接。</p>
 </li>
 <li><p>服务对象</p>
-<p>TCP是点对点的两点间服务，即一条TCP连接只能有两个端点；&lt;br  &gt;<br>UDP支持一对一，一对多，多对一，多对多的交互通信。</p>
+<p>TCP是点对点的两点间服务，即一条TCP连接只能有两个端点；<br>UDP支持一对一，一对多，多对一，多对多的交互通信。</p>
 </li>
 <li><p>可靠性</p>
-<p>TCP是可靠交付：无差错，不丢失，不重复，按序到达。&lt;br  &gt;<br>UDP是尽最大努力交付，不保证可靠交付。</p>
+<p>TCP是可靠交付：无差错，不丢失，不重复，按序到达。<br>UDP是尽最大努力交付，不保证可靠交付。</p>
 </li>
 <li><p>拥塞控制，流量控制</p>
-<p>TCP有拥塞控制和流量控制保证数据传输的安全性。&lt;br  &gt;<br>UDP没有拥塞控制，网络拥塞不会影响源主机的发送效率。</p>
+<p>TCP有拥塞控制和流量控制保证数据传输的安全性。<br>UDP没有拥塞控制，网络拥塞不会影响源主机的发送效率。</p>
 </li>
 <li><p>报文长度</p>
-<p>TCP是动态报文长度，即TCP报文长度是根据接收方的窗口大小和当前网络拥塞情况决定的。&lt;br  &gt;<br>UDP面向报文，不合并，不拆分，保留上面传下来报文的边界。</p>
+<p>TCP是动态报文长度，即TCP报文长度是根据接收方的窗口大小和当前网络拥塞情况决定的。<br>UDP面向报文，不合并，不拆分，保留上面传下来报文的边界。</p>
 </li>
 <li><p>首部开销</p>
-<p>TCP首部开销大，首部20个字节。&lt;br  &gt;<br>UDP首部开销小，8字节。（源端口，目的端口，数据长度，校验和）</p>
+<p>TCP首部开销大，首部20个字节。<br>UDP首部开销小，8字节。（源端口，目的端口，数据长度，校验和）</p>
 </li>
 </ol>
 <h3 id="TCP和UDP适用场景"><a href="#TCP和UDP适用场景" class="headerlink" title="TCP和UDP适用场景"></a>TCP和UDP适用场景</h3><p>TCP 是可靠的但传输速度慢，UDP 是不可靠的但传输速度快。因此在选用具体协议通信时，应该根据通信数据的要求而决定。</p>
@@ -531,7 +715,7 @@ netstat -an|grep 8080
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-09 21:03:06" itemprop="dateModified" datetime="2020-02-09T21:03:06+08:00">2020-02-09</time>
+                <time title="修改时间：2020-02-10 18:24:05" itemprop="dateModified" datetime="2020-02-10T18:24:05+08:00">2020-02-10</time>
               </span>
 
           
@@ -547,11 +731,18 @@ netstat -an|grep 8080
       
           <p>岗位：后端研发</p>
 <h2 id="一面"><a href="#一面" class="headerlink" title="一面"></a>一面</h2><ol>
-<li><p>代码 两个有序数组，找中位数</p>
-<pre><code>双指针O(n),二分套二分O(logn ^ 2)</code></pre></li>
+<li><p>代码 两个有序数组，找中位数<br>双指针O(n),二分套二分O(logn ^ 2)</p>
+</li>
 <li><p>代码 给字母矩阵(9 * 9),问是否存在一条路径构成询问的单词(如果有多个询问单词呢)</p>
 </li>
 <li><p>mysql中主键和索引有什么区别</p>
+<ul>
+<li>主键一定是唯一性的索引，唯一性的索引不一定是主键</li>
+<li>唯一性索引可以有多个，主键只能有一个</li>
+<li>主键列不允许为空值，唯一性索引可以为空值</li>
+<li>主键列可以由多个字段组成，形成复合主键，同时主键也是唯一索引</li>
+<li>唯一索引表示索引值唯一，可以由一个或多个字段组成，一个表可以有多个唯一性索引</li>
+</ul>
 </li>
 <li><p>TCP四次挥手(收到了FIN的ack,但是对面的FIN迟迟不来怎么办)</p>
 </li>
@@ -559,7 +750,11 @@ netstat -an|grep 8080
 </li>
 </ol>
 <h2 id="二面"><a href="#二面" class="headerlink" title="二面"></a>二面</h2><ol>
-<li>python的多线程是假的</li>
+<li>python的多线程是假的<br>python的代码的执行由python虚拟机来控制，同时只有一个线程在执行<br>解决方法  <ul>
+<li>重写python编译器(pypy)</li>
+<li>调用c语言链接库</li>
+</ul>
+</li>
 <li>64匹马,8个赛道,最少比几次找到最快的4匹</li>
 <li>代码 实现memcpy</li>
 <li>代码 共有n列,m个方块,每块1*1*1,落在第a[i]列,消掉一行得1分,问最后得分</li>
@@ -573,14 +768,13 @@ netstat -an|grep 8080
 </ol>
 <h2 id="三面"><a href="#三面" class="headerlink" title="三面"></a>三面</h2><ol>
 <li>上次面试看你有些不会,回去有学习吗,学了些什么</li>
-<li>代码 给定一个二叉树以及树上的部分节点,如何找到这些节点的最近公共祖先<pre><code>lca O(nlogn);树形dp O(n)</code></pre></li>
+<li>代码 给定一个二叉树以及树上的部分节点,如何找到这些节点的最近公共祖先<br>lca O(nlogn)  &amp;&amp;  树形dp O(n)</li>
 <li>代码 求二叉树的直径</li>
 <li>巴什博弈</li>
 <li>有一个[0,4]的随机数生成器,怎么生成[0,6]的随机数</li>
-<li>一个省的高考成绩怎么排序<pre><code>直接排序O(nlogn),桶排O(n)</code></pre></li>
+<li>一个省的高考成绩怎么排序<br>直接排序O(nlogn),桶排O(n)</li>
 </ol>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>牛客投的杭州,被推到了北京,说给我转到上海,后来不想放我走,面试又问我去不去深圳..</p>
-<p>总体体验不错,面试效率相当高,面试问题比较有深度,有大公司的风范</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>牛客投的杭州,被推到了北京,说给我转到上海,后来不想放我走,面试又问我去不去深圳..<br>总体体验不错,面试效率相当高,面试问题比较有深度,有大公司的风范</p>
 
       
     </div>
@@ -631,7 +825,7 @@ netstat -an|grep 8080
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-09 21:13:49" itemprop="dateModified" datetime="2020-02-09T21:13:49+08:00">2020-02-09</time>
+                <time title="修改时间：2020-02-10 18:25:02" itemprop="dateModified" datetime="2020-02-10T18:25:02+08:00">2020-02-10</time>
               </span>
 
           
@@ -652,12 +846,9 @@ netstat -an|grep 8080
 <li>代码 最长公共子序列</li>
 </ol>
 <h2 id="二面"><a href="#二面" class="headerlink" title="二面"></a>二面</h2><ol>
-<li><p>给n个点的完全图，点编号0~n-1，边权为两个顶点的异或和，求最小生成树。(n&lt;=2^32)</p>
-</li>
-<li><p>给一个序列，长度n(n&lt;2e6)。问当k分别为1-n时，原串中长度为k的连续子串中的最小值的最大值。</p>
-<pre><code>用单调队列预处理出每个数之前第一个比他小的位置和之后第一个比他小的位置，可以得到这个数能影响的长度len,ans[len] = max(ans[len],a[i]) 然后倒着扫一遍即可。</code></pre></li>
-<li><p>知道智能指针吗</p>
-</li>
+<li>给n个点的完全图，点编号0~n-1，边权为两个顶点的异或和，求最小生成树。(n&lt;=2^32)</li>
+<li>给一个序列，长度n(n&lt;2e6)。问当k分别为1-n时，原串中长度为k的连续子串中的最小值的最大值。<br>用单调队列预处理出每个数之前第一个比他小的位置和之后第一个比他小的位置，可以得到这个数能影响的长度len,ans[len] = max(ans[len],a[i]) 然后倒着扫一遍即可。</li>
+<li>知道智能指针吗</li>
 <li></li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class A&#123;</span><br><span class="line">	virtual void func()&#123;</span><br><span class="line">		cout&lt;&lt;&quot;a&quot;&lt;&lt;endl; </span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">class B:public A&#123;</span><br><span class="line">	void func() override&#123;</span><br><span class="line">		cout&lt;&lt;&quot;b&quot;&lt;&lt;endl;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">A* ptr &#x3D; new B;</span><br></pre></td></tr></table></figure>
@@ -673,7 +864,7 @@ netstat -an|grep 8080
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>组负责人说还有最后一面，那时我已经拿到头条offer了就放弃了</p>
 <p>面试用微信视频，用电脑写代码</p>
 <p>总体效率和体验还算可以，hr很负责</p>
-<p>面试难度偏小，二面比较舒服，其他面感觉稍有点草率</p>
+<p>面试难度偏小，二面比较舒服，其他面感觉有点草率</p>
 
       
     </div>
@@ -756,7 +947,7 @@ netstat -an|grep 8080
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
