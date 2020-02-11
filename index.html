@@ -139,6 +139,115 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/12/bigtable/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="GJH">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GJH's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/12/bigtable/" class="post-title-link" itemprop="url">bigtable</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-02-12 04:45:58 / 修改时间：05:09:46" itemprop="dateCreated datePublished" datetime="2020-02-12T04:45:58+08:00">2020-02-12</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="数据模型："><a href="#数据模型：" class="headerlink" title="数据模型："></a>数据模型：</h2><p>Bigtable 是一个稀疏的、分布式的、持久化存储的多维度排序 Map。Map 的索引是行关键字、列关键字以及时间戳；Map 中的每个 value 都是一个未经解析的 byte 数组。 </p>
+<img src="/2020/02/12/bigtable/%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B.png" class="">
+
+<h3 id="行"><a href="#行" class="headerlink" title="行"></a>行</h3><p>表中的行关键字可以是任意的字符串（目前支持最大 64KB 的字符串）。对同一个行关键字的读或者写操作都是原子的（不管读或者写这一行里多少个不同列）。<br>Bigtable通过行关键字的字典顺序来组织数据。表中的每一个行都可以动态分区。每个分区叫做一个Tablet，Tablet是数据分布和负载均衡调整的最小单位。</p>
+<h3 id="列族"><a href="#列族" class="headerlink" title="列族"></a>列族</h3><p>列关键字组成的集合叫做“列族”，列族是访问控制的基本单位。列族在使用之前必须先创建，然后才能在列族中任何的列关键字下存放数据；列族创建后，其中任何一个列关键字下都可以存放数据。一张表中的列族不能太多（最多几百个），且列族在运行期间很少改变。相反，一张表可以有无限多个列。<br>列族的名字必须是可打印的字符串。访问控制，磁盘和内存的使用统计都是在列族层面进行的。</p>
+<h3 id="时间戳"><a href="#时间戳" class="headerlink" title="时间戳"></a>时间戳</h3><p> 在Bigtable中，表的每一个数据项都可以包含同一份数据的不同版本；不同版本的数据通过时间戳来索引。Bigtable时间戳的类型是64位整型。数据项中，不同版本的数据按照时间戳倒序排序，即最新的数据排序在最前面。<br>为了减轻多个版本数据的管理负担，我们对每一个列族配有两个设置参数，Bigtable 通过这两个参数可以对废弃版本的数据自动进行垃圾收集。</p>
+<h2 id="API"><a href="#API" class="headerlink" title="API"></a>API</h2><p>Bigtable提供了建立和删除表以及列族的API函数。Bigtable还提供了修改集群，表和列族的元数据的API，比如修改访问权限。<br>客户程序可以对Bigtable进行如下的操作：写入和删除Bigtable中的值，从每个行中查找值，或者遍历表中的一个数据子集。<br>Bigtable还可以和Mapreduce程序一起使用，可以作为MapReduce框架的输入和输出。</p>
+<h2 id="BigTable构件"><a href="#BigTable构件" class="headerlink" title="BigTable构件"></a>BigTable构件</h2><p>Bigtable构件是建立在其他几个Google基础构件上的。Bigtable使用Google的分布式文件系统GFS存储日志文件和数据文件。Bigtable集群通常运行在一个共享的机器池中，池中的机器还会运行其他的各种各样的分布式应用程序。<br>Bigtable内部存储数据的文件是Google SSTable格式的。SSTable是一个持久化的，排序的，不可更改的Map结构，而Map是一个key-value映射的数据结构，key和value都是任意的Byte串。<br>Bigtable还依赖一个高可用的，序列化的分布式锁服务器组件，叫做Chubby。Bigtable使用Chubby完成以下几个任务：</p>
+<ol>
+<li>确保在任何给定的时间内最多只有一个活动的Master副本；</li>
+<li>存储Bigtable数据的自引导指令的位置；</li>
+<li>查找Tablet服务器，以及在Tablet服务器失效时进行善后；</li>
+<li>存储Bigtable的模式信息（每张表的列族信息）；</li>
+<li>以及存储访问控制列表。</li>
+</ol>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>Bigtable包括了三个主要的组件：链接到客户程序中的库，一个Master服务器和多个Tablet服务器。针对系统工作负载的变化情况，Bigtable可以动态的向集群中添加（或者删除）Tablet服务器。  </p>
+<ul>
+<li>Master服务器：为Tablet服务器分配Tablets、检测新加入的或者过期失效的Table服务器、对Tablet服务器进行负载均衡、以及对保存在GFS上的文件进行垃圾收集。  </li>
+<li>Tablet服务器:管理一个 Tablet 的集合。每个Tablet服务器负责处理它所加载的 Tablet 的读写操作，以及在 Tablets 过大时，对其进行分割。</li>
+<li>客户端:读取的数据都不经过Master服务器，客户程序直接和Tablet服务器通信进行读写操作。</li>
+</ul>
+<p>一个BigTable集群存储了很多表，每个表包含了一个Tablet的集合，而每个Tablet包含了某个范围内的行的所有相关数据。初始状态下，一个表只有一个Tablet。随着表中数据的增长，它被自动分割成多个Tablet，缺省情况下，每个Tablet的尺寸大约是100MB到200MB。</p>
+<h3 id="Tablet的位置"><a href="#Tablet的位置" class="headerlink" title="Tablet的位置"></a>Tablet的位置</h3><p>用一个三层的、类似Ｂ+树的结构存储Tablet的位置信息：</p>
+<img src="/2020/02/12/bigtable/tablet%E4%BD%8D%E7%BD%AE.png" class="">
+
+<p>第一层是一个存储在 Chubby 中的文件，它包含了 Root Tablet 的位置信息。Root Tablet 包含了一个特殊的 METADATA 表里所有的 Tablet 的位置信息。METADATA 表的每个 Tablet 包含了一个用户 Tablet 的集合。Root Tablet 实际上是 METADATA 表的第一个 Tablet，只不过对它的处理比较特殊 — Root Tablet 永远不会被分割 — 这就保证了 Tablet 的位置信息存储结构不会超过三层。</p>
+<h3 id="Tablet的分配"><a href="#Tablet的分配" class="headerlink" title="Tablet的分配"></a>Tablet的分配</h3><p>在任何一个时刻，一个Tablet只能分配给一个Tablet服务器，由master控制。<br>BigTable使用Chubby跟踪记录Tablet服务器的状态。当一个 Tablet 服务器启动时，它在 Chubby 的一个指定目录下建立一个有唯一性名字的文件，并且获取该文件的独占锁。Master 服务器实时监控着这个目录（服务器目录）<br>Master 服务器负责检查一个 Tablet 服务器是否已经不再为它的 Tablet 提供服务了，并且要尽快重新分配它加载的 Tablet。<br>当集群管理系统启动了一个Master服务器之后，Master服务器首先要了解当前Tablet的分配状态，之后才能够修改分配状态。Master服务器在启动的时候执行以下步骤：</p>
+<ol>
+<li>Master服务器从Chubby获取一个唯一的Master锁，用来阻止创建其它的Master服务器实例；</li>
+<li>Master服务器扫描Chubby的服务器文件锁存储目录，获取当前正在运行的服务器列表；</li>
+<li>Master服务器和所有的正在运行的Tablet表服务器通信，获取每个Tablet服务器上Tablet的分配信息；</li>
+<li>Master服务器扫描METADATA表获取所有的Tablet的集合。<br>在扫描的过程中，当Master服务器发现了一个还没有分配的Tablet，Master服务器就将这个Tablet加入未分配的Tablet集合等待合适的时机分配。</li>
+</ol>
+<h3 id="Tablet服务"><a href="#Tablet服务" class="headerlink" title="Tablet服务"></a>Tablet服务</h3><img src="/2020/02/12/bigtable/tablet%E6%9C%8D%E5%8A%A1.png" class="">
+
+<h3 id="空间收缩"><a href="#空间收缩" class="headerlink" title="空间收缩"></a>空间收缩</h3><p>随着写操作的执行，memtable的大小不断增加。当memtable的尺寸到达一个门限值的时候，这个memtable就会被冻结，然后创建一个新的memtable；被冻结住memtable按照SSTable格式写入GFS。  </p>
+<p>MinorCompaction过程有两个目的：</p>
+<ol>
+<li>shrink Tablet服务器使用的内存，以及在服务器灾难恢复过程中，减少必须从提交日志里读取的数据量。</li>
+<li>在Compaction过程中，正在进行的读写操作仍能继续。<br>MajorCompaction机制允许Bigtable回收已经删除的数据占有的资源，并且确保BigTable能及时清除已经删除的数据，这对存放敏感数据的服务是非常重要。</li>
+</ol>
+<h2 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h2><h3 id="局部性群组"><a href="#局部性群组" class="headerlink" title="局部性群组"></a>局部性群组</h3><p>客户程序可以将多个列族组合成一个局部性群族。对 Tablet 中的每个局部性群组都会生成一个单独的SSTable。将通常不会一起访问的列族分割成不同的局部性群组可以提高读取操作的效率。<br>可以把一个局部性群组设定为全部存储在内存中。Tablet服务器依照惰性加载的策略将设定为放入内存的局部性群组的SSTable装载进内存。加载完成之后，访问属于该局部性群组的列族的时候就不必读取硬盘了。这个特性对于需要频繁访问的小块数据特别有用：在Bigtable内部，我们利用这个特性提高METADATA表中具有位置相关性的列族的访问速度。</p>
+<h3 id="压缩"><a href="#压缩" class="headerlink" title="压缩"></a>压缩</h3><p>很多客户程序使用了“两遍”的、可定制的压缩方式。第一遍采用Bentley and McIlroy’s方式，这种方式在一个很大的扫描窗口里对常见的长字符串进行压缩；第二遍是采用快速压缩算法，即在一个16KB的小扫描窗口中寻找重复数据。</p>
+<h3 id="通过缓存提高读操作的性能"><a href="#通过缓存提高读操作的性能" class="headerlink" title="通过缓存提高读操作的性能"></a>通过缓存提高读操作的性能</h3><p>为了提高读操作的性能，Tablet服务器使用二级缓存的策略。</p>
+<ul>
+<li>扫描缓存是第一级缓存，主要缓存Tablet服务器通过SSTable接口获取的Key-Value对；对于经常要重复读取相同数据的应用程序来说，扫描缓存非常有效</li>
+<li>Block缓存是二级缓存，缓存的是从GFS读取的SSTable的Block。对于经常要读取刚刚读过的数据附近的数据的应用程序来说，Block缓存更有用（例如，顺序读，或者在一个热点的行的局部性群组中随机读取不同的列)。</li>
+</ul>
+<h4 id="Bloom-过滤器"><a href="#Bloom-过滤器" class="headerlink" title="Bloom 过滤器"></a>Bloom 过滤器</h4><p>一个读操作必须读取构成 Tablet 状态的所有 SSTable 的数据。如果这些 SSTable 不在内存中，那么就需要多次访问硬盘。我们通过允许客户程序对特定局部性群组的 SSTable 指定 Bloom 过滤器，来减少硬盘访问的次数。我们可以使用 Bloom 过滤器查询一个 SSTable 是否包含了特定行和列的数据。对于某些特定应用程序，我们只付出了少量的、用于存储 Bloom 过滤器的内存的代价，就换来了读操作显著减少的磁盘访问的次数。使用 Bloom 过滤器也隐式的达到了当应用程序访问不存在的行或列时，大多数时候我们都不需要访问硬盘的目的。 </p>
+<h4 id="Commit-日志的实现"><a href="#Commit-日志的实现" class="headerlink" title="Commit 日志的实现"></a>Commit 日志的实现</h4><p>如果我们把对每个 Tablet 的操作的 Commit 日志都存在一个单独的文件的话，那么就会产生大量的文件，并且这些文件会并行的写入 GFS。<br>设置每个 Tablet 服务器一个 Commit 日志文件，把修改操作的日志以追加方式写入同一个日志文件，因此一个实际的日志文件中混合了对多个 Tablet 修改的日志记录。</p>
+<h4 id="Tablet-恢复提速"><a href="#Tablet-恢复提速" class="headerlink" title="Tablet 恢复提速"></a>Tablet 恢复提速</h4><p>当 Master 服务器将一个 Tablet 从一个 Tablet 服务器移到另外一个 Tablet 服务器时，源 Tablet 服务器会对这个 Tablet 做一次 Minor Compaction。这个 Compaction 操作减少了 Tablet 服务器的日志文件中没有归并的记录，从而减少了恢复的时间。Compaction 完成之后，该服务器就停止为该 Tablet 提供服务。在卸载 Tablet 之前，源 Tablet 服务器还会再做一次（通常会很快）Minor Compaction，以消除前面在一次压缩过程中又产生的未归并的记录。第二次 Minor Compaction 完成以后，Tablet 就可以被装载到新的 Tablet 服务器上了，并且不需要从日志中进行恢复。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/11/gfs/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1171,7 +1280,7 @@ netstat -an|grep 8080
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
