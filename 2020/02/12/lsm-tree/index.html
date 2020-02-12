@@ -20,15 +20,21 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="GJH&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/archives/2019/index.html">
+  <meta name="description" content="目标LSM 保持了日志文件写性能，以及微小的读操作性能损失。本质就是用顺序存储取代随机存储。 实现写 当一些更新操作到达时，他们会被写到memtable中，memtable使用数据结构(skip list)来保持key的有序，在大部分的实现中，memtable会通过写WAL的方式备份到磁盘，用来恢复数据，防止数据丢失。当memtable数据达到一定规模时会被刷新到磁盘上的一个新文件。系统只做了顺序">
+<meta property="og:type" content="article">
+<meta property="og:title" content="lsm-tree">
+<meta property="og:url" content="http://yoursite.com/2020/02/12/lsm-tree/index.html">
 <meta property="og:site_name" content="GJH&#39;s blog">
+<meta property="og:description" content="目标LSM 保持了日志文件写性能，以及微小的读操作性能损失。本质就是用顺序存储取代随机存储。 实现写 当一些更新操作到达时，他们会被写到memtable中，memtable使用数据结构(skip list)来保持key的有序，在大部分的实现中，memtable会通过写WAL的方式备份到磁盘，用来恢复数据，防止数据丢失。当memtable数据达到一定规模时会被刷新到磁盘上的一个新文件。系统只做了顺序">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yoursite.com/2020/02/12/lsm-tree/tablet.png">
+<meta property="article:published_time" content="2020-02-12T10:58:31.000Z">
+<meta property="article:modified_time" content="2020-02-12T11:27:06.128Z">
 <meta property="article:author" content="GJH">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/02/12/lsm-tree/tablet.png">
 
-<link rel="canonical" href="http://yoursite.com/archives/2019/">
+<link rel="canonical" href="http://yoursite.com/2020/02/12/lsm-tree/">
 
 
 <script id="page-configurations">
@@ -36,11 +42,11 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false
+    isPost: true
   };
 </script>
 
-  <title>归档 | GJH's blog</title>
+  <title>lsm-tree | GJH's blog</title>
   
 
 
@@ -134,69 +140,88 @@
           <div class="content">
             
 
+  <div class="posts-expand">
+      
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 12 篇日志。 继续努力。</span>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/12/lsm-tree/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="GJH">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GJH's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          lsm-tree
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-02-12 18:58:31 / 修改时间：19:27:06" itemprop="dateCreated datePublished" datetime="2020-02-12T18:58:31+08:00">2020-02-12</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <h1 class="collection-header">2019</h1>
-    </div>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-12-13T20:29:57+08:00"
-              content="2019-12-13">
-          12-13
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2019/12/13/%E5%AE%9E%E4%B9%A0%E7%94%9F%E9%9D%A2%E8%AF%95-%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8/" itemprop="url">
-            <span itemprop="name">实习生面试-字节跳动</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-12-11T10:00:00+08:00"
-              content="2019-12-11">
-          12-11
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2019/12/11/%E5%AE%9E%E4%B9%A0%E7%94%9F%E9%9D%A2%E8%AF%95-%E5%95%86%E6%B1%A4/" itemprop="url">
-            <span itemprop="name">实习生面试-商汤</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
+        <h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><p>LSM 保持了日志文件写性能，以及微小的读操作性能损失。本质就是用顺序存储取代随机存储。</p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><h3 id="写"><a href="#写" class="headerlink" title="写"></a>写</h3><ol>
+<li>当一些更新操作到达时，他们会被写到memtable中，memtable使用数据结构(skip list)来保持key的有序，在大部分的实现中，memtable会通过写WAL的方式备份到磁盘，用来恢复数据，防止数据丢失。当memtable数据达到一定规模时会被刷新到磁盘上的一个新文件。系统只做了顺序磁盘读写，因为没有文件被编辑，新的内容或者修改只简单的生成新的文件。  <img src="/2020/02/12/lsm-tree/tablet.png" class=""></li>
+<li>所以越多的数据存储到系统中，就会有越多的不可修改的，顺序的sstable文件被创建，它们代表了小的，按时间顺序的修改。旧的文件不会被更新，重复的纪录只会通过创建新的纪录来覆盖，这也就产生了一些冗余的数据。<br>所以系统会周期的执行合并操作（compaction)。合并操作选择一些文件，并把他们合并到一起，移除重复的更新或者删除纪录，同时也会删除冗余。更重要的是，通过减少文件个数的增长，保证读操作的性能。因为sstable文件都是有序结构的，所以合并操作也是非常高效的。</li>
+</ol>
+<h3 id="读"><a href="#读" class="headerlink" title="读"></a>读</h3><ol>
+<li>系统首先检查内存数据(memtable)，</li>
+<li>如果没有找到这个key，就会逆序的一个一个检查sstable文件，直到 key 被找到。因为每个sstable都是有序的，所以查找比较高效(O(logN))，但是读操作会变的越来越慢随着sstable的个数增加，因为每一个 sstable都要被检查。（O(K log N), K为sstable个数， N 为sstable平均大小）。</li>
+</ol>
+<h3 id="cache"><a href="#cache" class="headerlink" title="cache"></a>cache</h3><p>所以，读操作比其它本地更新的结构慢，幸运的是，有一些技巧可以提高性能。最基本的的方法就是页缓存（也就是leveldb的 TableCache，将sstable按照LRU缓存在内存中）在内存中，减少二分查找的消耗。</p>
+<h3 id="bloom"><a href="#bloom" class="headerlink" title="bloom"></a>bloom</h3><p>通过布隆过滤器来避免大量的读文件操作，布隆过滤器是一种高效的方法来判断一个sstable中是否包含一个特定的key。（如果bloom说一个key不存在，就一定不存在，而当bloom说一个文件存在是，可能是不存在的）  </p>
 
     </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/02/12/win-Gvim%E9%85%8D%E7%BD%AE/" rel="prev" title="win-Gvim配置">
+      <i class="fa fa-chevron-left"></i> win-Gvim配置
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
   </div>
-  
-  
-  
-
-  
-
 
 
           </div>
@@ -247,6 +272,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#目标"><span class="nav-number">1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现"><span class="nav-number">2.</span> <span class="nav-text">实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#写"><span class="nav-number">2.1.</span> <span class="nav-text">写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#读"><span class="nav-number">2.2.</span> <span class="nav-text">读</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cache"><span class="nav-number">2.3.</span> <span class="nav-text">cache</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bloom"><span class="nav-number">2.4.</span> <span class="nav-text">bloom</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
