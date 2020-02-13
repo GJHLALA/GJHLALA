@@ -139,6 +139,66 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/13/map-ordered-map/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="GJH">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GJH's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/13/map-ordered-map/" class="post-title-link" itemprop="url">map/ordered_map</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-02-13 09:34:42 / 修改时间：09:43:14" itemprop="dateCreated datePublished" datetime="2020-02-13T09:34:42+08:00">2020-02-13</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="map"><a href="#map" class="headerlink" title="map"></a>map</h2><p>map: #include &lt; map &gt;<br>ap内部实现了一个红黑树，自动排序。<br>数据有序(可以用来二分)<br>空间占用率高</p>
+<h2 id="unordered-map"><a href="#unordered-map" class="headerlink" title="unordered_map"></a>unordered_map</h2><p>unordered_map: #include &lt; unordered_map &gt;<br>unordered_map: unordered_map内部实现了一个哈希表，其元素的排列顺序是无序的<br>找速度非常的快<br>哈希表的建立比较耗费时间</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/12/lsm-tree/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1017,136 +1077,6 @@ netstat -an|grep 8080
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/10/TCP-IP/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="GJH">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="GJH's blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/10/TCP-IP/" class="post-title-link" itemprop="url">TCP/IP</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-02-10 06:11:30 / 修改时间：18:10:50" itemprop="dateCreated datePublished" datetime="2020-02-10T06:11:30+08:00">2020-02-10</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="请回答OSI七层模型和TCP-IP四层模型"><a href="#请回答OSI七层模型和TCP-IP四层模型" class="headerlink" title="请回答OSI七层模型和TCP/IP四层模型"></a>请回答OSI七层模型和TCP/IP四层模型</h2><h3 id="OSI七层模型"><a href="#OSI七层模型" class="headerlink" title="OSI七层模型"></a>OSI七层模型</h3><ul>
-<li>物理层: 通过媒介传输比特,确定机械及电气规范,传输单位为bit，主要包括的协议为：IEE802.3 CLOCK RJ45</li>
-<li>数据链路层: 将比特组装成帧和点到点的传递,传输单位为帧,主要包括的协议为MAC VLAN PPP</li>
-<li>网络层：负责数据包从源到宿的传递和网际互连，传输单位为包,主要包括的协议为IP ARP ICMP</li>
-<li>传输层：提供端到端的可靠报文传递和错误恢复，传输单位为报文,主要包括的协议为TCP UDP</li>
-<li>会话层：建立、管理和终止会话，传输单位为SPDU，主要包括的协议为RPC NFS</li>
-<li>表示层: 对数据进行翻译、加密和压缩,传输单位为PPDU，主要包括的协议为JPEG ASII</li>
-<li>应用层: 允许访问OSI环境的手段,传输单位为APDU，主要包括的协议为FTP HTTP DNS</li>
-</ul>
-<h3 id="TCP-IP-4层模型"><a href="#TCP-IP-4层模型" class="headerlink" title="TCP/IP 4层模型"></a>TCP/IP 4层模型</h3><img src="/2020/02/10/TCP-IP/tcpip%E5%9B%9B%E5%B1%82%E6%A8%A1%E5%9E%8B.png" class="">
-
-<h2 id="TCP怎么保证可靠性，TCP建立连接和断开连接的过程"><a href="#TCP怎么保证可靠性，TCP建立连接和断开连接的过程" class="headerlink" title="TCP怎么保证可靠性，TCP建立连接和断开连接的过程"></a>TCP怎么保证可靠性，TCP建立连接和断开连接的过程</h2><h3 id="TCP保证可靠性"><a href="#TCP保证可靠性" class="headerlink" title="TCP保证可靠性"></a>TCP保证可靠性</h3><ol>
-<li><p>序列号、确认应答、超时重传</p>
-<p>数据到达接收方，接收方需要发出一个确认应答，表示已经收到该数据段，并且确认序号会说明了它下一次需要接收的数据序列号。如果发送发迟迟未收到确认应答，那么可能是发送的数据丢失，也可能是确认应答丢失，这时发送方在等待一定时间后会进行重传。这个时间一般是2*RTT(报文段往返时间)+一个偏差值。</p>
-</li>
-<li><p>窗口控制与高速重发控制/快速重传(重复确认应答)</p>
-<p>TCP会利用窗口控制来提高传输速度，意思是在一个窗口大小内，不用一定要等到应答才能发送下一段数据，窗口大小就是无需等待确认而可以继续发送数据的最大值。如果不使用窗口控制，每一个没收到确认应答的数据都要重发。</p>
-<p>使用窗口控制，如果数据段1001-2000丢失，后面数据每次传输，确认应答都会不停地发送序号为1001的应答，表示我要接收1001开始的数据，发送端如果收到3次相同应答，就会立刻进行重发；但还有种情况有可能是数据都收到了，但是有的应答丢失了，这种情况不会进行重发，因为发送端知道，如果是数据段丢失，接收端不会放过它的，会疯狂向它提醒……</p>
-</li>
-<li><p>拥塞控制</p>
-<p>如果把窗口定的很大，发送端连续发送大量的数据，可能会造成网络的拥堵（大家都在用网，你在这狂发，吞吐量就那么大，当然会堵），甚至造成网络的瘫痪。所以TCP在为了防止这种情况而进行了拥塞控制。</p>
-<p>慢启动：定义拥塞窗口，一开始将该窗口大小设为1，之后每次收到确认应答（经过一个rtt），将拥塞窗口大小*2。</p>
-<p>拥塞避免：设置慢启动阈值，一般开始都设为65536。拥塞避免是指当拥塞窗口大小达到这个阈值，拥塞窗口的值不再指数上升，而是加法增加（每次确认应答/每个rtt，拥塞窗口大小+1），以此来避免拥塞。<br>将报文段的超时重传看做拥塞，则一旦发生超时重传，我们需要先将阈值设为当前窗口大小的一半，并且将窗口大小设为初值1，然后重新进入慢启动过程。</p>
-<p>快速重传：在遇到3次重复确认应答（高速重发控制）时，代表收到了3个报文段，但是这之前的1个段丢失了，便对它进行立即重传。<br>然后，先将阈值设为当前窗口大小的一半，然后将拥塞窗口大小设为慢启动阈值+3的大小。<br>这样可以达到：在TCP通信时，网络吞吐量呈现逐渐的上升，并且随着拥堵来降低吞吐量，再进入慢慢上升的过程，网络不会轻易的发生瘫痪。</p>
-</li>
-</ol>
-<h3 id="TCP建立连接和断开连接的过程"><a href="#TCP建立连接和断开连接的过程" class="headerlink" title="TCP建立连接和断开连接的过程"></a>TCP建立连接和断开连接的过程</h3><img src="/2020/02/10/TCP-IP/tcp%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B.png" class="">
-
-<h4 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h4><ol>
-<li>Client将标志位SYN置为1，随机产生一个值seq=J，并将该数据包发送给Server，Client进入SYN_SENT状态，等待Server确认。</li>
-<li>Server收到数据包后由标志位SYN=1知道Client请求建立连接，Server将标志位SYN和ACK都置为1，ack=J+1，随机产生一个值seq=K，并将该数据包发送给Client以确认连接请求，Server进入SYN_RCVD状态。</li>
-<li>Client收到确认后，检查ack是否为J+1，ACK是否为1，如果正确则将标志位ACK置为1，ack=K+1，并将该数据包发送给Server，Server检查ack是否为K+1，ACK是否为1，如果正确则连接建立成功，Client和Server进入ESTABLISHED状态，完成三次握手，随后Client与Server之间可以开始传输数据了。</li>
-</ol>
-<h4 id="四次挥手"><a href="#四次挥手" class="headerlink" title="四次挥手"></a>四次挥手</h4><p>由于TCP连接时全双工的，因此，每个方向都必须要单独进行关闭，这一原则是当一方完成数据发送任务后，发送一个FIN来终止这一方向的连接，收到一个FIN只是意味着这一方向上没有数据流动了，即不会再收到数据了，但是在这个TCP连接上仍然能够发送数据，直到这一方向也发送了FIN。首先进行关闭的一方将执行主动关闭，而另一方则执行被动关闭。</p>
-<ol>
-<li>数据传输结束后，客户端的应用进程发出连接释放报文段，并停止发送数据，客户端进入FIN_WAIT_1状态，此时客户端依然可以接收服务器发送来的数据。</li>
-<li>服务器接收到FIN后，发送一个ACK给客户端，确认序号为收到的序号+1，服务器进入CLOSE_WAIT状态。客户端收到后进入FIN_WAIT_2状态。</li>
-<li>当服务器没有数据要发送时，服务器发送一个FIN报文，此时服务器进入LAST_ACK状态，等待客户端的确认</li>
-<li>客户端收到服务器的FIN报文后，给服务器发送一个ACK报文，确认序列号为收到的序号+1。此时客户端进入TIME_WAIT状态，等待2MSL（MSL：报文段最大生存时间），然后关闭连接。</li>
-</ol>
-<h2 id="tcp握手为什么两次不可以？为什么不用四次？"><a href="#tcp握手为什么两次不可以？为什么不用四次？" class="headerlink" title="tcp握手为什么两次不可以？为什么不用四次？"></a>tcp握手为什么两次不可以？为什么不用四次？</h2><h3 id="两次不可以"><a href="#两次不可以" class="headerlink" title="两次不可以"></a>两次不可以</h3><p>tcp是全双工通信，两次握手只能确定单向数据链路是可以通信的，并不能保证反向的通信正常</p>
-<h3 id="不用四次"><a href="#不用四次" class="headerlink" title="不用四次"></a>不用四次</h3><p>本来握手应该和挥手一样都是需要确认两个方向都能联通的，本来模型应该是：</p>
-<ol>
-<li>客户端发送syn0给服务器</li>
-<li>服务器收到syn0，回复ack(syn0+1)</li>
-<li>服务器发送syn1</li>
-<li>客户端收到syn1，回复ack(syn1+1)</li>
-</ol>
-<p>因为tcp是全双工的，上边的四部确认了数据在两个方向上都是可以正确到达的，但是2，3步没有没有上下的联系，可以将其合并，加快握手效率，所有就变成了3步握手。</p>
-<h2 id="IP地址作用，以及MAC地址作用"><a href="#IP地址作用，以及MAC地址作用" class="headerlink" title="IP地址作用，以及MAC地址作用"></a>IP地址作用，以及MAC地址作用</h2><p>MAC地址是一个硬件地址，用来定义网络设备的位置，主要由数据链路层负责。而IP地址是IP协议提供的一种统一的地址格式，为互联网上的每一个网络和每一台主机分配一个逻辑地址，以此来屏蔽物理地址的差异。</p>
-<h2 id="TCP-IP数据链路层的交互过程"><a href="#TCP-IP数据链路层的交互过程" class="headerlink" title="TCP/IP数据链路层的交互过程"></a>TCP/IP数据链路层的交互过程</h2><p>网络层等到数据链层用mac地址作为通信目标，数据包到达网络等准备往数据链层发送的时候，首先会去自己的arp缓存表(存着ip-mac对应关系)去查找改目标ip的mac地址，如果查到了，就讲目标ip的mac地址封装到链路层数据包的包头。如果缓存中没有找到，会发起一个广播：who is ip XXX tell ip XXX,所有收到的广播的机器看这个ip是不是自己的，如果是自己的，则以单拨的形式将自己的mac地址回复给请求的机器</p>
-<h2 id="TCP和UDP的区别和各自适用的场景"><a href="#TCP和UDP的区别和各自适用的场景" class="headerlink" title="TCP和UDP的区别和各自适用的场景"></a>TCP和UDP的区别和各自适用的场景</h2><h3 id="TCP和UDP区别"><a href="#TCP和UDP区别" class="headerlink" title="TCP和UDP区别"></a>TCP和UDP区别</h3><ol>
-<li><p>连接<br>TCP是面向连接的传输层协议，即传输数据之前必须先建立好连接。<br>UDP无连接。</p>
-</li>
-<li><p>服务对象</p>
-<p>TCP是点对点的两点间服务，即一条TCP连接只能有两个端点；<br>UDP支持一对一，一对多，多对一，多对多的交互通信。</p>
-</li>
-<li><p>可靠性</p>
-<p>TCP是可靠交付：无差错，不丢失，不重复，按序到达。<br>UDP是尽最大努力交付，不保证可靠交付。</p>
-</li>
-<li><p>拥塞控制，流量控制</p>
-<p>TCP有拥塞控制和流量控制保证数据传输的安全性。<br>UDP没有拥塞控制，网络拥塞不会影响源主机的发送效率。</p>
-</li>
-<li><p>报文长度</p>
-<p>TCP是动态报文长度，即TCP报文长度是根据接收方的窗口大小和当前网络拥塞情况决定的。<br>UDP面向报文，不合并，不拆分，保留上面传下来报文的边界。</p>
-</li>
-<li><p>首部开销</p>
-<p>TCP首部开销大，首部20个字节。<br>UDP首部开销小，8字节。（源端口，目的端口，数据长度，校验和）</p>
-</li>
-</ol>
-<h3 id="TCP和UDP适用场景"><a href="#TCP和UDP适用场景" class="headerlink" title="TCP和UDP适用场景"></a>TCP和UDP适用场景</h3><p>TCP 是可靠的但传输速度慢，UDP 是不可靠的但传输速度快。因此在选用具体协议通信时，应该根据通信数据的要求而决定。</p>
-<p>若通信数据完整性需让位与通信实时性，则应该选用TCP 协议（如文件传输、重要状态的更新等）；反之，则使用 UDP 协议（如视频传输、实时通信等）</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1217,7 +1147,7 @@ netstat -an|grep 8080
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
