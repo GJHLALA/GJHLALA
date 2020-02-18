@@ -20,19 +20,19 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="map#include &lt; map &gt;内部实现了一个红黑树，自动排序。数据有序(可以用来二分)空间占用率高 unordered_map#include &lt; unordered_map &gt;unordered_map内部实现了一个哈希表，其元素的排列顺序是无序的找速度非常的快哈希表的建立比较耗费时间">
+  <meta name="description" content="vector 底层数据结构为数组，占据一块连续的内存空间，支持快速随机访问 内部实现是通过管理了一个指针，只是当内存空间不够时，会重新分配一块更大的内存空间(*2)，把之前的内容挪过去 对尾部操作很方便，对头部或者插入都需要O(n)的时间复杂度  list 底层数据结构为双向链表，支持快速增删   内存不需要连续  deque deque是一个双端队列(double-ended queue):">
 <meta property="og:type" content="article">
-<meta property="og:title" content="map&#x2F;ordered_map">
-<meta property="og:url" content="http://yoursite.com/2020/02/13/map-ordered-map/index.html">
+<meta property="og:title" content="stl">
+<meta property="og:url" content="http://yoursite.com/2020/02/18/stl/index.html">
 <meta property="og:site_name" content="GJH&#39;s blog">
-<meta property="og:description" content="map#include &lt; map &gt;内部实现了一个红黑树，自动排序。数据有序(可以用来二分)空间占用率高 unordered_map#include &lt; unordered_map &gt;unordered_map内部实现了一个哈希表，其元素的排列顺序是无序的找速度非常的快哈希表的建立比较耗费时间">
+<meta property="og:description" content="vector 底层数据结构为数组，占据一块连续的内存空间，支持快速随机访问 内部实现是通过管理了一个指针，只是当内存空间不够时，会重新分配一块更大的内存空间(*2)，把之前的内容挪过去 对尾部操作很方便，对头部或者插入都需要O(n)的时间复杂度  list 底层数据结构为双向链表，支持快速增删   内存不需要连续  deque deque是一个双端队列(double-ended queue):">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-02-13T01:34:42.000Z">
-<meta property="article:modified_time" content="2020-02-13T01:53:05.670Z">
+<meta property="article:published_time" content="2020-02-18T05:33:07.000Z">
+<meta property="article:modified_time" content="2020-02-18T07:39:55.691Z">
 <meta property="article:author" content="GJH">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/2020/02/13/map-ordered-map/">
+<link rel="canonical" href="http://yoursite.com/2020/02/18/stl/">
 
 
 <script id="page-configurations">
@@ -44,7 +44,7 @@
   };
 </script>
 
-  <title>map/ordered_map | GJH's blog</title>
+  <title>stl | GJH's blog</title>
   
 
 
@@ -143,7 +143,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/13/map-ordered-map/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/18/stl/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -156,7 +156,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          map/ordered_map
+          stl
         </h1>
 
         <div class="post-meta">
@@ -167,7 +167,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-02-13 09:34:42 / 修改时间：09:53:05" itemprop="dateCreated datePublished" datetime="2020-02-13T09:34:42+08:00">2020-02-13</time>
+              <time title="创建时间：2020-02-18 13:33:07 / 修改时间：15:39:55" itemprop="dateCreated datePublished" datetime="2020-02-18T13:33:07+08:00">2020-02-18</time>
             </span>
 
           
@@ -181,8 +181,36 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="map"><a href="#map" class="headerlink" title="map"></a>map</h2><p>#include &lt; map &gt;<br>内部实现了一个红黑树，自动排序。<br>数据有序(可以用来二分)<br>空间占用率高</p>
-<h2 id="unordered-map"><a href="#unordered-map" class="headerlink" title="unordered_map"></a>unordered_map</h2><p>#include &lt; unordered_map &gt;<br>unordered_map内部实现了一个哈希表，其元素的排列顺序是无序的<br>找速度非常的快<br>哈希表的建立比较耗费时间</p>
+        <h2 id="vector"><a href="#vector" class="headerlink" title="vector"></a>vector</h2><ul>
+<li>底层数据结构为数组，占据一块连续的内存空间，支持快速随机访问</li>
+<li>内部实现是通过管理了一个指针，只是当内存空间不够时，会重新分配一块更大的内存空间(*2)，把之前的内容挪过去</li>
+<li>对尾部操作很方便，对头部或者插入都需要O(n)的时间复杂度</li>
+</ul>
+<h2 id="list"><a href="#list" class="headerlink" title="list"></a>list</h2><ul>
+<li>底层数据结构为双向链表，支持快速增删  </li>
+<li>内存不需要连续</li>
+</ul>
+<h2 id="deque"><a href="#deque" class="headerlink" title="deque"></a>deque</h2><ul>
+<li>deque是一个双端队列(double-ended queue):  <pre><code>[堆1] --&gt; [堆2] --&gt;[堆3] --&gt; ...  </code></pre>每个堆保存好几个元素,然后堆和堆之间有指针指向,看起来像是list和vector的结合 </li>
+<li>deque在开始和最后添加元素都一样快(都不需要移动其他块),并提供了随机访问方法,像vector一样使用[]访问任意元素,但是随机访问速度比不上vector快,因为它要内部处理堆跳转</li>
+<li>deque也有保留空间.另外,由于deque不要求连续空间,所以可以保存的元素比vector更大</li>
+</ul>
+<h2 id="stack-amp-amp-queue"><a href="#stack-amp-amp-queue" class="headerlink" title="stack &amp;&amp; queue"></a>stack &amp;&amp; queue</h2><ul>
+<li>底层一般用list或deque实现，封闭头部即可</li>
+</ul>
+<h2 id="priority-queue"><a href="#priority-queue" class="headerlink" title="priority_queue"></a>priority_queue</h2><ul>
+<li>底层数据结构一般为vector为底层容器，堆heap为处理规则来管理底层容器实现</li>
+</ul>
+<h2 id="set-multiset-amp-amp-map-multimap"><a href="#set-multiset-amp-amp-map-multimap" class="headerlink" title="set/multiset &amp;&amp; map/multimap"></a>set/multiset &amp;&amp; map/multimap</h2><ul>
+<li>底层数据结构为红黑树</li>
+<li>set &amp;&amp; map 不可重复</li>
+<li>multiset &amp;&amp; multimap 可重复</li>
+</ul>
+<h2 id="hash-set-hash-multiset-amp-amp-hash-map-hash-multimap"><a href="#hash-set-hash-multiset-amp-amp-hash-map-hash-multimap" class="headerlink" title="hash_set/hash_multiset &amp;&amp; hash_map/hash_multimap"></a>hash_set/hash_multiset &amp;&amp; hash_map/hash_multimap</h2><ul>
+<li>底层数据结构为hash表，无序</li>
+<li>hash_set &amp;&amp; hash_map 不可重复 </li>
+<li>hash_multiset &amp;&amp; hash_multimap 可重复</li>
+</ul>
 
     </div>
 
@@ -201,10 +229,7 @@
     <a href="/2020/02/12/lsm-tree/" rel="prev" title="lsm-tree">
       <i class="fa fa-chevron-left"></i> lsm-tree
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/02/18/q/" rel="next" title="q">
-      q <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -264,7 +289,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#map"><span class="nav-number">1.</span> <span class="nav-text">map</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#unordered-map"><span class="nav-number">2.</span> <span class="nav-text">unordered_map</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#vector"><span class="nav-number">1.</span> <span class="nav-text">vector</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#list"><span class="nav-number">2.</span> <span class="nav-text">list</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#deque"><span class="nav-number">3.</span> <span class="nav-text">deque</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#stack-amp-amp-queue"><span class="nav-number">4.</span> <span class="nav-text">stack &amp;&amp; queue</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#priority-queue"><span class="nav-number">5.</span> <span class="nav-text">priority_queue</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#set-multiset-amp-amp-map-multimap"><span class="nav-number">6.</span> <span class="nav-text">set&#x2F;multiset &amp;&amp; map&#x2F;multimap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hash-set-hash-multiset-amp-amp-hash-map-hash-multimap"><span class="nav-number">7.</span> <span class="nav-text">hash_set&#x2F;hash_multiset &amp;&amp; hash_map&#x2F;hash_multimap</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -278,7 +303,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
