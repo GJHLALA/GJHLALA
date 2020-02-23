@@ -24,7 +24,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="lsm-tree">
 <meta property="og:url" content="http://yoursite.com/2020/02/12/lsm-tree/index.html">
-<meta property="og:site_name" content="GJH&#39;s blog">
+<meta property="og:site_name" content="Jacob&#39;s blog">
 <meta property="og:description" content="目标LSM 保持了日志文件写性能，以及微小的读操作性能损失。本质就是用顺序存储取代随机存储。 实现写 当一些更新操作到达时，他们会被写到memtable中，memtable使用数据结构(skip list)来保持key的有序，在大部分的实现中，memtable会通过写WAL的方式备份到磁盘，用来恢复数据，防止数据丢失。当memtable数据达到一定规模时会被刷新到磁盘上的一个新文件。系统只做了顺序">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/2020/02/12/lsm-tree/tablet.png">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>lsm-tree | GJH's blog</title>
+  <title>lsm-tree | Jacob's blog</title>
   
 
 
@@ -90,7 +90,7 @@
     <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">GJH's blog</span>
+        <span class="site-title">Jacob's blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -154,7 +154,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="GJH's blog">
+      <meta itemprop="name" content="Jacob's blog">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
